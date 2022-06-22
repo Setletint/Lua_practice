@@ -15,10 +15,11 @@ hook.Add( "PlayerSay", "CoinFlip", function( ply, text )
 end )
 
 hook.Add( "PlayerSay", "RespawnCommand", function( ply, text, public )
-	if ( string.lower( text ) == "/respawn" ) then
-		ply:Kill()
+	if ( string.lower( text ) == "/respawn" ) and ply:Nick() == 'Spike Spiegel' then
+	
+		--ply:Kill()
+		print(ply:Nick() .. 'перереспавнился.')
 		ply:Spawn()
-
 		return ""
 	end
 end )
