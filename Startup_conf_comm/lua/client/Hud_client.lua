@@ -1,18 +1,19 @@
 print('Loading HUD Lua...')
---[[
+
 local function HUDHide ( HLHUD )
-	for k, v in pairs('CHudHealth', 'CHudBattery', 'CHudAmmo') do
+	for k, v in pairs({'CHudHealth', 'CHudBattery', 'CHudAmmo', 'CHudSecondaryAmmo'}) do
 		if HLHUD == v then return false end
 	end
 end
 
 hook.Add('HUDShouldDraw', 'HudHideF', HUDHide)
-]]
 
+--[[
 local hide = {
 	["CHudHealth"] = true,
 	["CHudBattery"] = true,
-	["CHudAmmo"] = true
+	["CHudAmmo"] = true,
+	["CHudSecondaryAmmo"] = true
 }
 
 hook.Add( "HUDShouldDraw", "HideHUD", function( name )
@@ -22,7 +23,7 @@ hook.Add( "HUDShouldDraw", "HideHUD", function( name )
 
 	-- Don't return anything here, it may break other addons that rely on this hook.
 end )
-
+]]
 myHUDX = 26
 myHUDY = ScrH() - 30
 
@@ -51,7 +52,7 @@ local function ServerHUD()
 	draw.RoundedBox(5, myHUDX, myHUDY, 320, 20, Color(290, 295, 295, 100))
 	draw.RoundedBox(5, myHUDX, myHUDY, math.Clamp(hp, 1 , 320)*3.19, 20, Color(290, 295, 295, 400))
 	draw.SimpleText('HP: ' .. hp .. '/' .. maxhp, 'FontForSHUD', myHUDX + 105, myHUDY - 25, Color (290, 295, 295, 400), TEXT_ALIGN_TOP)
-	draw.SimpleText('Ammo: ' .. ammo_in_clip .. '/' .. tammo_in_clip .. '|' .. tammo , 'FontForSHUD', myHUDX + 105, myHUDY - 55, Color (290, 295, 295, 400), TEXT_ALIGN_TOP)
+	draw.SimpleText('Ammo: ' .. ammo_in_clip .. '/' .. tammo_in_clip .. '|' .. tammo , 'FontForSHUD', myHUDX + 90, myHUDY - 55, Color (290, 295, 295, 400), TEXT_ALIGN_TOP)
 end
 
 hook.Add('HUDPaint', 'FirstHUD', ServerHUD)
