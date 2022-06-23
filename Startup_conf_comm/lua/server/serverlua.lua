@@ -1,4 +1,5 @@
 print('Server Lua Loading!')
+
 hook.Add( "PlayerSay", "CoinFlip", function( ply, text )
 	if ( string.lower( text ) == "/flip" ) then
 		local PlayerFlip = math.random( 2 )
@@ -13,7 +14,6 @@ hook.Add( "PlayerSay", "CoinFlip", function( ply, text )
 		return ""
 	end
 end )
-
 hook.Add( "PlayerSay", "RespawnCommand", function( ply, text, public )
 	if ( string.lower( text ) == "/respawn" ) and ply:Nick() == 'Spike Spiegel' then
 	

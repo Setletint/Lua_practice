@@ -33,6 +33,20 @@ surface.CreateFont('FontForSHUD', {
 	weight = 600	
 	} )
 	
+concommand.Add( "testavatar", function()
+
+	local Panel = vgui.Create( "DFrame" )
+	Panel:SetPos( 200, 200 )
+	Panel:SetSize( 500, 500 )
+	Panel:SetTitle( "Avatar Test" )
+	Panel:MakePopup()
+
+	local Avatar = vgui.Create( "AvatarImage", Panel )
+	Avatar:SetSize( 64, 64 )
+	Avatar:SetPos( 4, 30 )
+	Avatar:SetPlayer( LocalPlayer(), 64 )
+
+end )
 	
 local function ServerHUD()
 
@@ -53,6 +67,11 @@ local function ServerHUD()
 	draw.RoundedBox(5, myHUDX, myHUDY, math.Clamp(hp, 1 , 320)*3.19, 20, Color(290, 295, 295, 400))
 	draw.SimpleText('HP: ' .. hp .. '/' .. maxhp, 'FontForSHUD', myHUDX + 105, myHUDY - 25, Color (290, 295, 295, 400), TEXT_ALIGN_TOP)
 	draw.SimpleText('Ammo: ' .. ammo_in_clip .. '/' .. tammo_in_clip .. '|' .. tammo , 'FontForSHUD', myHUDX + 90, myHUDY - 55, Color (290, 295, 295, 400), TEXT_ALIGN_TOP)
+	
+	
+	
 end
+
+
 
 hook.Add('HUDPaint', 'FirstHUD', ServerHUD)
